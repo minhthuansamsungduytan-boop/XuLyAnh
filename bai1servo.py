@@ -10,11 +10,31 @@ ser = serial.Serial(
     timeout=1
 )
 
-START = 833
-END = 2173
-STEP = 1  # moi xung 1 lan
+channel = 1
+A = 850
+B = 2150
+step = 10
 
-while True:
-    for pos in range(START, END + 1, STEP):
-        ser.write(f'#1P{pos}T500D0\r\n'.encode('ascii'))
-        time.sleep(0.02)
+try:
+    while True:
+        p = A
+        while p <= B:
+            cmd = f'#{channel}P{p}T100D100\r\n'
+            print("Gui:", cmd.strip())
+            ser.write(cmd.encode())
+            time.sleep(0.2)
+            p += step
+
+        p = B
+        while p >= A:
+            cmd = f'#{channel}P{p}T100D100\r\n'
+            print("Gui:", cmd.strip())
+            ser.write(cmd.encode())
+            time.sleep(0.2)
+            p -= step
+
+except KeyboardInterrupt:
+    print("Dung chuong trinh")
+
+finally:
+    ser.close()
