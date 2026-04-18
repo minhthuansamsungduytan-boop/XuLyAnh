@@ -1,9 +1,0 @@
-path: C:\Users\LeMinhThuan\OneDrive\Desktop\XuliAnh\Yolo\DataSet
-train: train/images
-val: val/images
-nc: 4
-names:
-    0: 1.Dung
-    1: 2.Do_xe      
-    2: 3.O_to
-    3: 4.Tru_tron
